@@ -40,11 +40,12 @@ public class LoadAssetEvents {
         try {
             for (CraftingRecipe recipe : event.getLoadedAssets().values()) {
                 if (shouldUpdate.test(recipe)) {
-                    craftingRecipeTime.set(recipe, 0F);
+                    LOGGER.atFine().log("Setting " + recipe.getId() + " crafting time to instant");
+                    craftingRecipeTime.set(recipe, 0.0F);
                 }
             }
         } catch (IllegalAccessException ex) {
-            LOGGER.atSevere().log("Unable to update timeSeconds for recipes, check yer shit unknown! - also only some recipes were updated");
+            LOGGER.atSevere().log("Unable to update timeSeconds for recipes, check yer shit unknown! - also only some recipes were updated", ex);
         }
     }
 
@@ -57,7 +58,7 @@ public class LoadAssetEvents {
         return switch (config.getWhitelistMode()) {
             case DISABLED -> (_) -> true;
             case ITEMIDS ->  (recipe) -> Arrays.stream(config.getWhitelistIds())
-                    .anyMatch((whitelistId) -> WildcardMatch.test(recipe.getId(), whitelistId));
+                    .anyMatch((whitelistId) -> recipe.getPrimaryOutput() != null && WildcardMatch.test(recipe.getPrimaryOutput().getItemId(), whitelistId, true));
         };
     }
 }
