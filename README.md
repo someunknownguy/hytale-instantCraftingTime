@@ -1,16 +1,11 @@
-# hytale-globalDeathSettings
-Ever noticed death settings don't apply across Worlds?
+# hytale-instantCraftingTime
+This mod allows you to make certain recipes instant without the need for an asset pack and having to override every asset in the game
 
-This mod is here to fix that.
+## Config stuff
 
-Using the same-style config you can change per world, this allows you to make sure this is applied across all worlds, existing and new.
+`WhitelistMode` allowed values
+ - `"Disabled"` makes every item instantly craft/process, ignoring `WhitelistIds`
+ - `"Itemids"` allows you to specify a list of item ids that will have their recipes become instant
 
-    {
-      "ItemsLossMode": "Configured",
-      "ItemsAmountLossPercentage": 20.0,
-      "ItemsDurabilityLossPercentage": 0.0
-    }
-ItemLossMode can be set to: 
-- "Configured" to only drop certain configured items from your inventory, respecting the other 2 config items (which items get dropped on death is asset-driven `"DropOnDeath": true`) 
-- "All" to make you drop all items on the ground, still applying the durability loss configured
-- "None" which makes you not lose any items, but still applies the durability loss configured
+`WhitelistIds` populate with appropriate ids based on above configured mode, supports wildcard matching
+
