@@ -5,7 +5,7 @@ This mod allows you to make certain recipes instant without the need for an asse
 
 `WhitelistMode` allowed values
  - `"Disabled"` makes every item instantly craft/process, ignoring `WhitelistIds`
- - `"Itemids"` allows you to specify a list of item ids that will have their recipes become instant
+ - `"ItemIds"` allows you to specify a list of item ids that will have their recipes become instant
 
 `WhitelistIds` populate with appropriate ids based on above configured mode, supports wildcard matching
 

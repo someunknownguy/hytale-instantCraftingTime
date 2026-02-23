@@ -57,7 +57,7 @@ public class LoadAssetEvents {
     private Predicate<CraftingRecipe> getPredicateFromWhitelistMode(PluginConfig config) {
         return switch (config.getWhitelistMode()) {
             case DISABLED -> (_) -> true;
-            case ITEMIDS ->  (recipe) -> Arrays.stream(config.getWhitelistIds())
+            case ITEM_IDS ->  (recipe) -> Arrays.stream(config.getWhitelistIds())
                     .anyMatch((whitelistId) -> recipe.getPrimaryOutput() != null && WildcardMatch.test(recipe.getPrimaryOutput().getItemId(), whitelistId, true));
         };
     }
